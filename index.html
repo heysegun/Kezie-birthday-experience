@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Kezie! ❤</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="hearts-container"></div>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Happy Birthday, Kezie ❤</h1>
+            <p class="subtitle">A little birthday experience</p>
+            <p class="intro-text">Somehow, you have ended up becoming my favourite person to talk with.</p>
+            <button class="btn" type="button">Open your birthday message ✨</button>
+            <div class="scroll-down">↓ see below and let the experience begin ↓</div>
+        </div>
+    </header>
+
+    <section class="gallery">
+        <div class="container">
+            <h2>One of the memories 📸</h2>
+            <div class="gallery-grid">
+                <div class="photo-card">
+                    <div class="photo-wrapper">
+                        <img src="asset/Kezie-photo.jpg" alt="Kezie smiling outdoors">
+                    </div>
+                    <p class="caption-under">Kezie smiling outdoors</p>
+                </div>
+                <div class="photo-card">
+                    <div class="photo-wrapper">
+                        <img src="asset/Kezie-photo2.jpg" alt="Kezie indoors">
+                    </div>
+                    <p class="caption-under">Kezie indoors • Another one ❤</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="letterModal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="letterTitle">
+        <div class="letter-container" tabindex="-1">
+            <button class="close-btn" type="button" aria-label="Close birthday message">&times;</button>
+            <h2 id="letterTitle">For you, Kezie ❤</h2>
+            
+            <div class="letter-content">
+                <p>Let me start by saying it's honestly a bit unreal that we've kept this conversation going until this moment. I mean, considering how we got talking on Facebook, at a time when I was simply looking out for a great friend, someone I could talk to, gist with, and just have a genuinely good connection with, I really didn't imagine that you would become someone I'd still be talking to months later.</p>
+
+                <p>Somewhere along the line, you became more than just that random person I met on Facebook. 😂 From the endless teasing, random conversations, our little misunderstandings, your “nvm” moments 😒😂, my play-play, and all the conversations in between, I've come to genuinely enjoy having you around.</p>
+
+                <p>I think one of the things I appreciate most is how easy it has been to be myself around you. We can talk about serious things, random things, our lives, our plans, argue over absolutely unnecessary things 😂, and somehow still find our way back to another conversation.</p>
+
+                <p>You've also made me realise that sometimes, the people we don't expect much from can unexpectedly become people we genuinely value.</p>
+
+                <p>So, on your birthday, I just want you to know that I'm grateful our paths crossed. I'm grateful for the conversations, the laughs, the moments you've made me smile, the times you've made me think, and even the moments we've managed to annoy ourselves 😒😂. They have all become part of what makes this connection beautiful.</p>
+
+                <p>I hope this new year brings you closer to the things you've been working and praying for. I hope you find growth, peace, good health, genuine happiness, and opportunities that remind you that all the effort you're putting into your life is worth it.</p>
+
+                <p>And yes, I hope you continue being the “top guy” you so confidently are 🌚😂.</p>
+
+                <p>Happy Birthday once again, Kezie. I'm genuinely glad I met you. ❤</p>
+                
+                <p class="closing">Here's to another year of life, more memories, more gist, more laughter, and hopefully fewer “nvm”s abeg 😒😂</p>
+                
+                <p class="signature">— With love, and plenty gist to come ❤</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="wish-section">
+        <div class="container">
+            <h2>Make a birthday wish 🌙</h2>
+            <div class="wish-card">
+                <p>One more thing — send me an amazing voice note, okay? 🌚</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Made especially for Kezie By Oly • Happy Birthday ❤</p>
+        <p class="footer-sub">Birthday memory</p>
+    </footer>
+
+    <script>
+        const modal = document.getElementById('letterModal');
+        const modalContent = document.querySelector('.letter-container');
+        const openButton = document.querySelector('.btn');
+        const closeButton = document.querySelector('.close-btn');
+        let lastFocusedElement = null;
+
+        function openModal() {
+            if (!modal) return;
+
+            lastFocusedElement = document.activeElement;
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+
+            setTimeout(() => {
+                modalContent?.focus();
+            }, 50);
+
+            for (let i = 0; i < 15; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        }
+
+        function closeModal() {
+            if (!modal) return;
+
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = 'auto';
+
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
+        }
+
+        openButton?.addEventListener('click', openModal);
+        closeButton?.addEventListener('click', closeModal);
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Floating Hearts Background Generator
+        function createHeart() {
+            const container = document.getElementById('hearts-container');
+            if (!container) return;
+
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤';
+
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 15 + 10 + 'px';
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+            heart.style.opacity = Math.random() * 0.5 + 0.2;
+
+            container.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        setInterval(createHeart, 400);
+    </script>
+</body>
+</html>
